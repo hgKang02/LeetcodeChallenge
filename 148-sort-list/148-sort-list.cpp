@@ -13,27 +13,28 @@ public:
     ListNode* sortList(ListNode* head) {
         if(head==NULL) return NULL;
         
-        vector<ListNode*> ln;
-        ListNode *ptr=head;
+        vector<ListNode*> vect;
+        ListNode * curr = head;
         
-        while(ptr!=NULL){
-            ln.push_back(ptr);
-            ptr=ptr->next;
+        while(curr != NULL){
+            vect.push_back(curr);
+            curr = curr -> next;
         }
         
-        sort(ln.begin(),ln.end(),[](ListNode* left,ListNode* right){
+        sort(vect.begin(), vect.end(),[](ListNode* left,ListNode* right){
             return (left->val<right->val);
         });
         
-        ptr=ln[0];
-        ListNode *res=ptr;
-        for(int i=1;i<ln.size();i++){
-            ptr->next=ln[i];
-            ptr=ptr->next;
+        curr = vect.at(0);
+        
+        ListNode * temp = curr;
+        for(int i=1; i < vect.size(); i++){
+            curr -> next = vect.at(i);
+            curr = curr -> next;
         }
         
-        ptr->next=NULL;
-        return res;
+        curr -> next = NULL;
+        return temp;
     }
 
 };
