@@ -4,14 +4,21 @@ class Solution(object):
         :type arr: List[int]
         :rtype: bool
         """
-        arr.sort()
-        if len(arr) == 1:
-            return False
-        elif len(arr) == 2:
+        min_value, max_value = min(arr), max(arr)
+        n = len(arr)
+        
+        if max_value - min_value == 0:
             return True
-        else:
-            diff = arr[1] - arr[0]
-            for i in range(len(arr) - 1):
-                if arr[i + 1] - arr[i] != diff:
-                    return False
-        return True
+        if (max_value - min_value) % (n - 1):
+
+            return False
+        
+        diff = (max_value - min_value) // (n - 1)
+        number_set = set()
+        
+        for a in arr:
+            if (a - min_value) % diff:
+                return False
+            number_set.add(a)
+        
+        return len(number_set) == n
