@@ -4,7 +4,6 @@ class Solution(object):
         :type operations: List[str]
         :rtype: int
         """
-        sum = 0
         arr = []
         arr.append(int(operations[0]))
         for i in range(1, len(operations),1):
@@ -16,9 +15,6 @@ class Solution(object):
                 arr.append(arr[-1] * 2)
             else:
                 arr.append(int(operations[i]))
-        print(arr)
-        
-        for i in arr:
-            sum += i
-        return sum
+
+        return sum(arr)
         
